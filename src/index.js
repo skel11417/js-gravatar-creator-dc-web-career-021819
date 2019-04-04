@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("loaded")
   const form = document.querySelector("#identicon-form")
   const identicon = document.querySelector('#identicon')
   form.addEventListener("submit", handleSubmit)
@@ -15,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // renderGravatar
   function renderGravatar(text){
+    // clear the existing squares
+    clearSquares()
     // a hashed array from the input text
     const hashedArray = md5.array(text)
     // creates a function to set a square's color
@@ -50,6 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function clearSquares(){
+    let squares = document.querySelectorAll('span')
+    squares.forEach(square => square.style.backgroundColor = "#FFF")
+  }
+
   // Helper Function
   function isEven(num){
     return parseInt(num) % 2 === 0 ? true : false
@@ -83,6 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
 
-  renderGravatar("c")
+  // renderGravatar("c")
 
 })
